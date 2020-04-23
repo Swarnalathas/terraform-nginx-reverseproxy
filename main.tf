@@ -36,9 +36,7 @@ resource "aws_security_group" "nginx-reverse-proxy-discovery" {
 resource "aws_instance" "nginx" {
   ami           = var.AMI_ID
   instance_type = "t2.micro"
-  security_groups = [
-    "${aws_security_group.nginx_aws_sg-instance.name}"
-  ]
+  vpc_security_group_ids = [aws_security_group.nginx-reverse-proxy-discovery.id]
   
   tags = {
     Name = "nginx-reverse-proxy-discovery"
