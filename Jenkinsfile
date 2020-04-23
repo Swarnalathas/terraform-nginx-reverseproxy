@@ -26,13 +26,13 @@ pipeline {
                      -var aws_secret_key=$AWS_SECRET_ACCESS_KEY \
                      -var server_a_address=$SERVER_A_ADDRESS \
                      -var server_b_address=$SERVER_B_ADDRESS \
-                     packer-nginx.json 2>&1 | tee build.txt
-                     AMI=\$(tail -2 build.txt | head -2 | awk 'match(\$0, /ami-.*/) { print substr(\$0, RSTART, RLENGTH) }')
-                     printf '%s' '\$AMI' > AMI.txt
-                     rm build.txt
-                     TF_VAR_AMI_ID=\$(cat AMI.txt)
-                     echo \$TF_VAR_AMI_ID
-                     rm AMI.txt"
+                     packer-nginx.json 2>&1 | tee build.txt \n
+                     AMI=\$(tail -2 build.txt | head -2 | awk 'match(\$0, /ami-.*/) { print substr(\$0, RSTART, RLENGTH) }') \n
+                     printf '%s' '\$AMI' > AMI.txt \n
+                     rm build.txt \n
+                     TF_VAR_AMI_ID=\$(cat AMI.txt) \n
+                     echo \$TF_VAR_AMI_ID \n
+                     rm AMI.txt" \n
             }
         }
     
