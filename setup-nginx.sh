@@ -1,3 +1,4 @@
+
 #!/bin/sh
 
 echo "CREATE NGINX CONFIG TEMPLATE"
@@ -11,14 +12,17 @@ http {
   default_type  application/octet-stream;
   sendfile        on;
   keepalive_timeout  65;
+  
   server {
-    listen 80;
-    location /admin {
-      proxy_pass http://$SERVER_A/;;
-    }
+    
+    server_name  _;
     location /user {
-      proxy_pass http://$SERVER_B/;
+      proxy_pass "http://$SERVER_A_ADDRESS/";
     }
+    location /admin {
+      proxy_pass "http://$SERVER_B_ADDRESS/";
+    }
+    
   }
 }
 EOF
