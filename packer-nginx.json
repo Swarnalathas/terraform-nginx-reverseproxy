@@ -1,0 +1,57 @@
+{
+    "variables": {
+      "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
+      "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+      "server_a_address": "{{env `SERVER_A_ADDRESS`}}",
+      "server_b_address": "{{env `SERVER_B_ADDRESS`}}",
+      "region": "eu-west-2",
+      "ssh_username": "ec2-user",
+      "instance_type": "t2.micro"
+    },
+    "builders": [
+      {
+        "type": "amazon-ebs",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key` }}",
+        "region": "{{user `region` }}",
+        "source_ami_filter": {
+          "filters": {
+            "virtualization-type": "hvm",
+            "name": "amzn2-ami-hvm-2.0.*-x86_64-ebs",
+            "root-device-type": "ebs"
+          },
+          "owners": ["137112412989"],
+          "most_recent": true
+        },
+        "instance_type": "{{user `instance_type` }}",
+        "ssh_username": "{{user `ssh_username`}}",
+        "ami_name": "nginx-reverse-proxy-discovery-{{timestamp}}",
+        "associate_public_ip_address": false
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": [
+          "echo ENABLE NGINX",
+          "sudo amazon-linux-extras enable nginx1",
+          "echo INSTALL NGINX",
+          "sudo yum -y install nginx",
+          "echo START NGINX",
+          "sudo systemctl enable nginx"
+        ]
+      },
+      {
+        "type": "shell",
+        "script": "setup-nginx.sh",
+        "environment_vars": [
+          "SERVER_A_ADDRESS={{user `server_a_address`}}",
+          "SERVER_B_ADDRESS={{user `server_b_address`}}"
+        ]
+      }
+    ]
+  }
+
+
+ 
+  
