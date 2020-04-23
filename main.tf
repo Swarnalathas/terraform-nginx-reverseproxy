@@ -1,7 +1,7 @@
 variable "AWS_ACCES_KEY" {}
 variable "AWS_SECRET_ACCESS" {}
 variable "AMI_ID" {}
-  
+variable "PACK_AMI_ID" {}  
 
 
 provider "aws" {
