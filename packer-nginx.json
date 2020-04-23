@@ -20,7 +20,7 @@
             "name": "amzn2-ami-hvm-2.0.*-x86_64-ebs",
             "root-device-type": "ebs"
           },
-          "owners": ["601868315480"],
+          "owners": ["137112412989"],
           "most_recent": true
         },
         "instance_type": "{{user `instance_type` }}",
