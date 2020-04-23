@@ -8,7 +8,7 @@ provider "aws" {
   region = "eu-west-2"
   access_key = var.AWS_ACCES_KEY
   secret_key = var.AWS_SECRET_ACCESS
-  //nginx_image_id = var.NGINX_AMI
+  nginx_image_id = var.PACK_AMI_ID
 }
 
 resource "aws_security_group" "nginx-reverse-proxy-discovery" {
@@ -34,7 +34,7 @@ resource "aws_security_group" "nginx-reverse-proxy-discovery" {
 }
 
 resource "aws_instance" "nginx" {
-  ami           = var.AMI_ID
+  ami           = var.PACK_AMI_ID
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.nginx-reverse-proxy-discovery.id]
   

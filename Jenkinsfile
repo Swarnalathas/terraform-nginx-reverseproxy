@@ -31,7 +31,6 @@ pipeline {
                      printf "%s" "\$AMI" > AMI.txt
                      rm build.txt
                      TF_VAR_AMI_ID=\$(cat AMI.txt)
-                     echo \$TF_VAR_AMI_ID
                      rm AMI.txt"""
             }
         }
@@ -51,7 +50,8 @@ pipeline {
                     sh 'terraform init'
                     sh "terraform plan -out=plan \
                         -var AWS_ACCES_KEY=$AWS_ACCES_KEY_ID \
-                        -var AWS_SECRET_ACCESS=$AWS_SECRET_ACCESS_KEY"
+                        -var AWS_SECRET_ACCESS=$AWS_SECRET_ACCESS_KEY \
+                        -var PACK_AMI_ID=$TF_VAR_AMI_ID"
                     // sh ‘terraform destroy -auto-approve’
                     sh 'terraform apply plan'
             }
