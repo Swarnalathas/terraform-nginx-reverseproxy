@@ -32,3 +32,4 @@ sudo mv /tmp/default.conf /etc/nginx/nginx.conf
 
 echo "RESTART NGINX"
 sudo systemctl restart nginx
+sudo journalctl -xe

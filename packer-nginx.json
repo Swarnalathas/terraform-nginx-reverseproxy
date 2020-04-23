@@ -2,6 +2,8 @@
   "variables": {
     "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "server_a_address": "{{env `SERVER_A_ADDRESS`}}",
+    "server_b_address": "{{env `SERVER_B_ADDRESS`}}",
     "region": "eu-west-2",
     "ssh_username": "ec2-user",
     "base_ami": "ami-01a6e31ac994bbc09",
