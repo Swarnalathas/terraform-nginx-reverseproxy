@@ -30,7 +30,7 @@ pipeline {
                      AMI=\$(tail -2 build.txt | head -2 | awk 'match(\$0, /ami-.*/) { print substr(\$0, RSTART, RLENGTH) }')
                      printf "%s" "\$AMI" > AMI.txt
                      rm build.txt
-                     ${env.TF_VAR_AMI_ID}=\$(cat AMI.txt)
+                     $TF_VAR_AMI_ID=\$(cat AMI.txt)
                      rm AMI.txt"""
             }
         }
