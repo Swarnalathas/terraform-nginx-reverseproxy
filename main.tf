@@ -37,7 +37,7 @@ resource "aws_instance" "nginx" {
   ami           = var.AMI_ID
   instance_type = "t2.micro"
   security_groups = [
-    "${aws_security_group.nginx-reverse-proxy-discovery.name}"
+    "${aws_security_group.nginx_aws_sg-instance.name}"
   ]
   
   tags = {
