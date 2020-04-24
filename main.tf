@@ -8,7 +8,6 @@ provider "aws" {
   region = "eu-west-2"
   access_key = var.AWS_ACCES_KEY
   secret_key = var.AWS_SECRET_ACCESS
-  nginx_image_id = var.PACK_AMI_ID
 }
 
 resource "aws_security_group" "nginx-reverse-proxy-discovery" {
