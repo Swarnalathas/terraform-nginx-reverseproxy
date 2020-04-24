@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    def TF_VAR_AMI_ID = ""
     environment {
         AWS_ACCES_KEY_ID = credentials('AWS_ACCES_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
