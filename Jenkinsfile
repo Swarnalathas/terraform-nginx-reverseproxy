@@ -22,7 +22,7 @@ pipeline {
         stage('Build Nginx Image') {
             steps {
                 script{
-                 env.TF_VAR_AMI_ID = sh "abc"
+                 env.TF_VAR_AMI_ID = sh "echo abc"
                  echo "Ami Pack ID: $TF_VAR_AMI_ID"
                 }
                 // sh "packer build \
