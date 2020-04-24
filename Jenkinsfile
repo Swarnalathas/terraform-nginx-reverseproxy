@@ -22,7 +22,10 @@ pipeline {
         stage('Build Nginx Image') {
             steps {
                 script{
-                 sh "echo abc" > TF_VAR_AMI_ID
+                TF_VAR_AMI_ID = sh (
+                            script: "echo 192.168.0.2",
+                            returnStdout: true
+                        ).trim()   
                  echo "Ami Pack ID: $TF_VAR_AMI_ID"
                 }
                 // sh "packer build \
