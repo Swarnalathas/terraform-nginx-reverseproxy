@@ -23,9 +23,13 @@ pipeline {
             steps {
                 script{
                 TF_VAR_AMI_ID = sh (
-                            script: "echo 192.168.0.2",
-                            returnStdout: true
-                        ).trim()   
+                            script: "packer build \
+                                    -var aws_access_key=$AWS_ACCES_KEY_ID \
+                                    -var aws_secret_key=$AWS_SECRET_ACCESS_KEY \
+                                    -var server_a_address=$SERVER_A_ADDRESS \
+                                    -var server_b_address=$SERVER_B_ADDRESS \
+                                    packer-nginx.json",
+                            returnStdout: true).trim()   
                  echo "Ami Pack ID: $TF_VAR_AMI_ID"
                 }
                 // sh "packer build \
