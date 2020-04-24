@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build Nginx Image') {
             steps {
-                sh "${env.TF_VAR_AMI_ID}=abc"
+                env.TF_VAR_AMI_ID = sh "abc"
                 echo "Ami Pack ID: $TF_VAR_AMI_ID"
                 // sh "packer build \
                 //      -var aws_access_key=$AWS_ACCES_KEY_ID \
