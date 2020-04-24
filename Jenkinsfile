@@ -28,9 +28,10 @@ pipeline {
                                     -var aws_secret_key=$AWS_SECRET_ACCESS_KEY \
                                     -var server_a_address=$SERVER_A_ADDRESS \
                                     -var server_b_address=$SERVER_B_ADDRESS \
-                                    packer-nginx.json",
+                                    packer-nginx.json 2>&1 | tee build.txt",
                             returnStdout: true).trim() 
-                 TF_VAR_AMI_ID = sh (script: "awk -v pat='ami-.*' '/pat/' $packerOut")
+                 TF_VAR_AMI_ID = sh (script: "awk -v pat='ami-.*' '/pat/' build.txt",returnStdout: true).trim()
+                 sh 'rm build.txt'
                  echo "Ami Pack ID: $TF_VAR_AMI_ID"
                 }
                 // sh "packer build \
