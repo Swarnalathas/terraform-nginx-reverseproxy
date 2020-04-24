@@ -48,17 +48,17 @@ pipeline {
             }
         }
 
-        stage('Provision infrastructure') {
-            steps {
-                    // sh 'terraform init'
-                    // sh "terraform plan -out=plan \
-                    //     -var AWS_ACCES_KEY=$AWS_ACCES_KEY_ID \
-                    //     -var AWS_SECRET_ACCESS=$AWS_SECRET_ACCESS_KEY \
-                    //     -var PACK_AMI_ID=$TF_VAR_AMI_ID"
-                    // sh ‘terraform destroy -auto-approve’
-                    // sh 'terraform apply plan'
-            }
-        }
+        // stage('Provision infrastructure') {
+        //     steps {
+        //             sh 'terraform init'
+        //             sh "terraform plan -out=plan \
+        //                 -var AWS_ACCES_KEY=$AWS_ACCES_KEY_ID \
+        //                 -var AWS_SECRET_ACCESS=$AWS_SECRET_ACCESS_KEY \
+        //                 -var PACK_AMI_ID=$TF_VAR_AMI_ID"
+        //             // sh ‘terraform destroy -auto-approve’
+        //             sh 'terraform apply plan'
+        //     }
+        // }
 
         // stage('Destroy infrastructure') {
         //     steps {
