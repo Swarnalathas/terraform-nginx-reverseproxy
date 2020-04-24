@@ -22,6 +22,8 @@ pipeline {
         }
         stage('Build Nginx Image') {
             steps {
+                sh "TF_VAR_AMI_ID=abc"
+                echo "Ami Pack ID: ${TF_VAR_AMI_ID}"
                 sh """packer build \
                      -var aws_access_key=$AWS_ACCES_KEY_ID \
                      -var aws_secret_key=$AWS_SECRET_ACCESS_KEY \
@@ -31,7 +33,7 @@ pipeline {
                      AMI=\$(tail -2 build.txt | head -2 | awk 'match(\$0, /ami-.*/) { print substr(\$0, RSTART, RLENGTH) }')
                      printf "%s" "\$AMI" > AMI.txt
                      rm build.txt
-                     "${TF_VAR_AMI_ID}"=\$(cat AMI.txt)
+                     "TF_VAR_AMI_ID"=\$(cat AMI.txt)
                      rm AMI.txt"""
                 echo "Ami Pack ID: ${TF_VAR_AMI_ID}"
             }
