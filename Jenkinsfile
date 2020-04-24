@@ -30,7 +30,8 @@ pipeline {
                                     -var server_b_address=$SERVER_B_ADDRESS \
                                     packer-nginx.json 2>&1 | tee build.txt",
                             returnStdout: true).trim() 
-                 TF_VAR_AMI_ID = sh (script: "awk -v pat='ami-.*' '/pat/' build.txt",returnStdout: true).trim()
+                 echo $packerOut           
+                 TF_VAR_AMI_ID = sh (script: "\$(tail -2 build.txt | head -2 | awk 'match(\$0, /ami-.*/) { print substr(\$0, RSTART, RLENGTH) }')",returnStdout: true).trim()
                  sh 'rm build.txt'
                  echo "Ami Pack ID: $TF_VAR_AMI_ID"
                 }
